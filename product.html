@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <script type="module" src="./dist/product-controller.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/bc836c2e6d.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <section id="notification" class="container-fluid">
+        <div class="main">
+            <i class="fa-solid fa-truck" style="color: #9e9e9e;"></i>
+            &nbsp FREE SHIPPING FOR ORDERS OVER $50
+        </div>
+        <div class="side">
+            Help and FAQs
+        </div>
+    </section>
+    <section id="header" class="container-fluid">
+        <div class="central">
+            <a class="logo-link" href="./index.html">
+                <div class="logo">
+                    Exclusive
+                 </div>
+            </a>
+            <div class="search">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass" style="color: #9c9c9c;"></i>
+                <input id="search-text" class="search-text" type="text">
+                </div>
+            </div>
+            <div class="control">
+                <i class="fa-regular fa-heart" style="color: #707070;"></i>
+                <a href="./cart.html"><i  class="fa-solid fa-cart-shopping" style="color: #707070;"></i></a>
+                <i class="fa-solid fa-bag-shopping" style="color: #707070;"></i>
+            </div>
+        </div>
+    </section>
+    <section id="category-header" class="container-fluid">
+        <div id="category-main"  class="category-main">
+        
+        </div>
+    </section>
+    <section class="product-content">
+        <div class="product-left">
+            <div class="product-left-first">
+                <div id="other-image-holder" class="other-image-holder">
+                </div>
+            </div>
+            <div class="product-left-second">
+                <img id="main-img" src="" class="image-holder">
+    
+            </img>
+            </div>
+        </div>
+        <div id="product-info" class="product-info">
+            <div id="product-title" class="product-title"></div>
+            <div id="product-rating" class="product-rating">
+
+            </div>
+            <div id="product-price" class="product-price">
+
+            </div>
+            <div id="product-desc" class="product-desc">
+
+            </div>
+            <div id="product-control" class="product-control">
+                <button id="sub" class="sub">
+                    -
+                </button>
+                <div id="countHolder" class="countHolder">
+                    0
+                </div>
+                <button id="add" class="add">
+                    +
+                </button>
+                <!-- <div id="wish" class="wish">
+                    <i class="fa-regular fa-heart" style="color: #b0b0b0;"></i>
+                </div> -->
+                <i id="wish" class='fa-regular fa-heart' style='color: #fc4557;font-size:1.6em'></i>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
