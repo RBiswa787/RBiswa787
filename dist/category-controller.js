@@ -46,7 +46,7 @@ function populateCategoryItems(products, till) {
         CARD.style.padding = "2%";
         const IMG = document.createElement("img");
         IMG.className = "card-img-top";
-        IMG.src = JSON.parse(product.image)[0];
+        IMG.src = "https://images.weserv.nl/?url=" + JSON.parse(product.image)[0];
         IMG.style.width = "50%";
         IMG.style.aspectRatio = "1/1";
         IMG.style.objectFit = "contain";

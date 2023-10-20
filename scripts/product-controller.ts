@@ -34,11 +34,11 @@ function populateProductData(){
     const PRODUCT = getSingleProduct(UNIQ_ID);
     console.log(PRODUCT["data"]);
     const MAIN_IMG = document.getElementById("main-img");
-    (MAIN_IMG as HTMLImageElement).src = JSON.parse(PRODUCT["data"][0]["image"])[0];
+    (MAIN_IMG as HTMLImageElement).src = "https://images.weserv.nl/?url=" + JSON.parse(PRODUCT["data"][0]["image"])[0];
     for(let i = 0; i< 4;i++){
     const SMALL_IMG = document.createElement("img");
     SMALL_IMG.className = "small-img";
-    (SMALL_IMG as HTMLImageElement).src = JSON.parse(PRODUCT["data"][0]["image"])[0];
+    (SMALL_IMG as HTMLImageElement).src = "https://images.weserv.nl/?url=" + JSON.parse(PRODUCT["data"][0]["image"])[0];
     const OTHER_IMAGE_HOLDER = document.getElementById("other-image-holder");
     OTHER_IMAGE_HOLDER?.appendChild(SMALL_IMG);    
 }

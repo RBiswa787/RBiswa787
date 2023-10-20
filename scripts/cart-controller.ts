@@ -60,7 +60,7 @@ function populateCartitems() {
         
         const IMG = document.createElement("img");
         let product = getSingleProduct(key);
-        (IMG as HTMLImageElement).src = JSON.parse(product["data"][0]["image"])[0];
+        (IMG as HTMLImageElement).src = "https://images.weserv.nl/?url=" + JSON.parse(product["data"][0]["image"])[0];
         IMG.style.width = "4em";
         IMG.style.aspectRatio = "1/1";
         IMG.style.objectFit = "contain";
@@ -402,7 +402,7 @@ function populateWishlist(){
         IMG.style.height = "40%";
         IMG.style.aspectRatio = "1/1";
         IMG.style.objectFit = "contain";
-        (IMG as HTMLImageElement).src = JSON.parse(product["image"])[0];
+        (IMG as HTMLImageElement).src = "https://images.weserv.nl/?url=" + JSON.parse(product["image"])[0];
 
 
         const TITLE = document.createElement("div");
