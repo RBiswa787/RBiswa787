@@ -212,5 +212,8 @@ export function init(){
     if(window.localStorage.getItem("saved_for_later") == null){
         window.localStorage.setItem("saved_for_later","[]");
     }
+    if(window.localStorage.getItem("total") == null){
+        window.localStorage.setItem("total","0");
+    }
 }
 init();
