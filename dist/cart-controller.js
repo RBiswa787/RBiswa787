@@ -230,9 +230,9 @@ function populateCartitems() {
     CART_ITEMS === null || CART_ITEMS === void 0 ? void 0 : CART_ITEMS.appendChild(ORDER_FOOTER);
     CART_ITEMS === null || CART_ITEMS === void 0 ? void 0 : CART_ITEMS.appendChild(ORDER_DELIVERY);
     CART_ITEMS === null || CART_ITEMS === void 0 ? void 0 : CART_ITEMS.appendChild(ORDER_TOTAL);
-    const pay = document.getElementById("pay");
+    const PAY = document.getElementById("pay");
     console.log("pay");
-    pay.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
+    PAY.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
         console.log("attempt to pay");
         var options = {
             "key": "rzp_test_s9PLBTOlPiYmYw",

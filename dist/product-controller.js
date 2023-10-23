@@ -42,9 +42,9 @@ function populateProductData() {
     }
     const TITLE = document.getElementById("product-title");
     console.log(TITLE);
-    TITLE === null || TITLE === void 0 ? void 0 : TITLE.innerText = PRODUCT["data"][0]["product_name"];
-    TITLE === null || TITLE === void 0 ? void 0 : TITLE.style.height = "auto";
-    TITLE === null || TITLE === void 0 ? void 0 : TITLE.style.marginBottom = "3%";
+    TITLE.innerText = PRODUCT["data"][0]["product_name"];
+    TITLE.style.height = "auto";
+    TITLE.style.marginBottom = "3%";
     const RATING = document.getElementById("product-rating");
     for (let i = 1; i <= 5; i++) {
         if (i <= PRODUCT["data"][0].productRating) {
@@ -60,22 +60,22 @@ function populateProductData() {
             RATING.appendChild(ICON);
         }
     }
-    RATING === null || RATING === void 0 ? void 0 : RATING.style.marginBottom = "2%";
-    RATING === null || RATING === void 0 ? void 0 : RATING.style.height = "auto";
+    RATING.style.marginBottom = "2%";
+    RATING.style.height = "auto";
     const PRICE = document.getElementById("product-price");
     PRICE.innerText = "Rs. " + PRODUCT["data"][0]["discounted_price"];
     const DESC = document.getElementById("product-desc");
     DESC.innerText = PRODUCT["data"][0]["description"];
-    DESC === null || DESC === void 0 ? void 0 : DESC.style.textAlign = "justify";
+    DESC.style.textAlign = "justify";
     const COUNT_HOLDER = document.getElementById("countHolder");
-    COUNT_HOLDER === null || COUNT_HOLDER === void 0 ? void 0 : COUNT_HOLDER.innerText = JSON.parse(window.localStorage.getItem("cart"))[UNIQ_ID] || 0;
+    COUNT_HOLDER.innerText = JSON.parse(window.localStorage.getItem("cart"))[UNIQ_ID] || 0;
     const ADD_BUTTON = document.getElementById("add");
     console.log(ADD_BUTTON);
     ADD_BUTTON.addEventListener("click", () => {
         let cart = JSON.parse(window.localStorage.getItem("cart"));
         if (!cart.hasOwnProperty(UNIQ_ID)) {
             cart[UNIQ_ID] = 1;
-            WISH === null || WISH === void 0 ? void 0 : WISH.className = "fa-regular fa-heart";
+            WISH.className = "fa-regular fa-heart";
             let wishlist = JSON.parse(window.localStorage.getItem("wishlist"));
             console.log(wishlist.includes(UNIQ_ID));
             if (wishlist.includes(UNIQ_ID)) {
@@ -91,7 +91,7 @@ function populateProductData() {
         window.localStorage.setItem("total", String(total));
         window.localStorage.setItem("cart", JSON.stringify(cart));
         const COUNT_HOLDER = document.getElementById("countHolder");
-        COUNT_HOLDER === null || COUNT_HOLDER === void 0 ? void 0 : COUNT_HOLDER.innerText = JSON.parse(window.localStorage.getItem("cart"))[UNIQ_ID];
+        COUNT_HOLDER.innerText = JSON.parse(window.localStorage.getItem("cart"))[UNIQ_ID];
     });
     const SUB_BUTTON = document.getElementById("sub");
     SUB_BUTTON.addEventListener("click", () => {
@@ -109,7 +109,7 @@ function populateProductData() {
         }
         window.localStorage.setItem("cart", JSON.stringify(cart));
         const COUNT_HOLDER = document.getElementById("countHolder");
-        COUNT_HOLDER === null || COUNT_HOLDER === void 0 ? void 0 : COUNT_HOLDER.innerText = JSON.parse(window.localStorage.getItem("cart"))[UNIQ_ID] || 0;
+        COUNT_HOLDER.innerText = JSON.parse(window.localStorage.getItem("cart"))[UNIQ_ID] || 0;
     });
     const WISH = document.getElementById("wish");
     if (JSON.parse(window.localStorage.getItem("wishlist")).includes(UNIQ_ID)) {
@@ -129,7 +129,7 @@ function populateProductData() {
             delete cart[UNIQ_ID];
             window.localStorage.setItem("cart", JSON.stringify(cart));
             const COUNT_HOLDER = document.getElementById("countHolder");
-            COUNT_HOLDER === null || COUNT_HOLDER === void 0 ? void 0 : COUNT_HOLDER.innerText = JSON.parse(window.localStorage.getItem("cart"))[UNIQ_ID] || 0;
+            COUNT_HOLDER.innerText = JSON.parse(window.localStorage.getItem("cart"))[UNIQ_ID] || 0;
         }
         else {
             WISH.className = "fa-regular fa-heart";

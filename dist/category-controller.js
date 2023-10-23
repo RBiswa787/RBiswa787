@@ -100,7 +100,7 @@ function populateCategoryItems(products, till) {
         TITLE.id = product.uniq_id;
         PRICE.id = product.uniq_id;
         RATING.id = product.uniq_id;
-        CONTENT.appendChild(CARD);
+        CONTENT === null || CONTENT === void 0 ? void 0 : CONTENT.appendChild(CARD);
     });
 }
 const BUTTON = document.getElementById("load");
@@ -109,7 +109,7 @@ BUTTON.addEventListener("click", () => {
         load += 12;
         populateCategoryItems(getAllInCategory(window.localStorage.getItem("curr_category")), load);
         if (load > getAllInCategory(window.localStorage.getItem("curr_category"))['data'].length) {
-            BUTTON.style.display = none;
+            BUTTON.style.display = "none";
         }
     }
     else if (sortByReview && !sortByPrice) {

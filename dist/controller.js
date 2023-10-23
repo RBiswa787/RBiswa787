@@ -156,6 +156,10 @@ export function removeOrder(orderid) {
     window.localStorage.setItem('orders', JSON.stringify(orders));
 }
 export function init() {
+    if (window.localStorage.getItem("total") == null) {
+        console.log("No data");
+        window.localStorage.setItem("total", "0");
+    }
     if (window.localStorage.getItem('cart') == null) {
         window.localStorage.setItem('cart', "{}");
     }
@@ -170,18 +174,4 @@ export function init() {
     }
 }
 init();
-//addToCart("238d84971326ce6bcbf44b2663bd3062");
-//removeFromCart("238d84971326ce6bcbf44b2663bd3062");
-//incrementInCart("238d84971326ce6bcbf44b2663bd3062");
-//decrementInCart("238d84971326ce6bcbf44b2663bd3062");
-//addToWishlist("238d84971326ce6bcbf44b2663bd3062");
-//console.log(filterByKeyword(getAllInCategory("Clothing")['data'],'skirt'));
-//console.log(getAllInList(["238d84971326ce6bcbf44b2663bd3062","cb4fa87a874f715fff567f7b7b3be79c"]));
-//placeOrder("#123");
-// removeOrder("#123");
-// addToSavedForLater("#123");
-//removeFromSavedForLater('#123');
-//console.log(getAllProducts());
-// console.log(getSortedByPrice(getAllInCategory("Clothing")['data'],true));
-//console.log(filterByKeyword(getAllInCategory("Clothing")['data'],' red '));
 //# sourceMappingURL=controller.js.map
