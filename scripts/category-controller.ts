@@ -33,7 +33,7 @@ function populateCategoryHeader(){
     
     const CATEGORY_HOLDER = document.getElementById("category-holder-text");
     console.log(window.localStorage.getItem("curr_category"));
-    CATEGORY_HOLDER.innerText = window.localStorage.getItem("curr_category");
+    (CATEGORY_HOLDER as HTMLElement).innerText = window.localStorage.getItem("curr_category")!;
 }
 
 function populateCategoryItems(products: any,till: number){
@@ -107,78 +107,78 @@ function populateCategoryItems(products: any,till: number){
         TITLE.id = product.uniq_id;
         PRICE.id = product.uniq_id;
         RATING.id = product.uniq_id;
-        CONTENT.appendChild(CARD);
+        CONTENT?.appendChild(CARD);
     });
 }
 
 const BUTTON = document.getElementById("load");
-BUTTON.addEventListener("click",() => {
+(BUTTON as HTMLButtonElement).addEventListener("click",() => {
     if(!sortByReview && !sortByPrice){
     load += 12;
-    populateCategoryItems(getAllInCategory(window.localStorage.getItem("curr_category")),load);
-    if(load > getAllInCategory(window.localStorage.getItem("curr_category"))['data'].length){
-        BUTTON.style.display = none;
+    populateCategoryItems(getAllInCategory(window.localStorage.getItem("curr_category")!),load);
+    if(load > getAllInCategory(window.localStorage.getItem("curr_category")!)['data'].length){
+        (BUTTON as HTMLButtonElement).style.display = "none";
     }
    }
    else if(sortByReview && !sortByPrice){
     load += 12;
-    populateCategoryItems({"data":getSortedByRating(getAllInCategory(window.localStorage.getItem("curr_category"))['data'],false)},load);
+    populateCategoryItems({"data":getSortedByRating(getAllInCategory(window.localStorage.getItem("curr_category")!)['data'],false)},load);
    }
    else{
     load += 12;
     console.log("Alert");
-    populateCategoryItems({"data":getSortedByPrice(getAllInCategory(window.localStorage.getItem("curr_category"))['data'],false)},load);
+    populateCategoryItems({"data":getSortedByPrice(getAllInCategory(window.localStorage.getItem("curr_category")!)['data'],false)},load);
    }
 })
 
 const SEARCH = document.getElementById("search-text");
-SEARCH.addEventListener('change', function (evt) {
+(SEARCH as HTMLButtonElement).addEventListener('change', function (evt) {
     console.log(this.value);
-    const PRODUCTS = filterByKeyword(getAllInCategory(window.localStorage.getItem("curr_category"))['data'],this.value);
+    const PRODUCTS = filterByKeyword(getAllInCategory(window.localStorage.getItem("curr_category")!)['data'],this.value);
     const CONTAINER = document.getElementById("content");
-    CONTAINER.innerHTML = "";
+    (CONTAINER as HTMLElement).innerHTML = "";
     load = 12;
     populateCategoryItems({"data":PRODUCTS}, load);
 });
 
 const SORT_BY_REVIEW = document.getElementById("sortReview");
-SORT_BY_REVIEW.addEventListener('click' , () => {
+(SORT_BY_REVIEW as HTMLButtonElement).addEventListener('click' , () => {
     sortByReview = true;
     sortByPrice = false;
     const CONTAINER = document.getElementById("content");
-    CONTAINER.innerHTML = "";
+    (CONTAINER as HTMLElement).innerHTML = "";
     load = 12;
-    const PRODUCTS = getSortedByRating(getAllInCategory(window.localStorage.getItem("curr_category"))['data'],false);
+    const PRODUCTS = getSortedByRating(getAllInCategory(window.localStorage.getItem("curr_category")!)['data'],false);
     populateCategoryItems({"data":PRODUCTS}, load);
 });
 
 const SORT_BY_PRICE = document.getElementById("sortPrice");
-SORT_BY_PRICE.addEventListener('click' , () => {
+(SORT_BY_PRICE as HTMLButtonElement).addEventListener('click' , () => {
     sortByPrice = true;
     sortByReview = false;
     const CONTAINER = document.getElementById("content");
-    CONTAINER.innerHTML = "";
+    (CONTAINER as HTMLElement).innerHTML = "";
     load = 12;
-    const PRODUCTS = getSortedByPrice(getAllInCategory(window.localStorage.getItem("curr_category"))['data'],false);
+    const PRODUCTS = getSortedByPrice(getAllInCategory(window.localStorage.getItem("curr_category")!)['data'],false);
     populateCategoryItems({"data":PRODUCTS}, load);
 });
 
 const SORT_BY_PRICE_REV = document.getElementById("sortPriceRev");
-SORT_BY_PRICE_REV.addEventListener('click' , () => {
+(SORT_BY_PRICE_REV as HTMLButtonElement).addEventListener('click' , () => {
     sortByPrice = true;
     sortByReview = false;
     const CONTAINER = document.getElementById("content");
-    CONTAINER.innerHTML = "";
+    (CONTAINER as HTMLElement).innerHTML = "";
     load = 12;
-    const PRODUCTS = getSortedByPrice(getAllInCategory(window.localStorage.getItem("curr_category"))['data'],true);
+    const PRODUCTS = getSortedByPrice(getAllInCategory(window.localStorage.getItem("curr_category")!)['data'],true);
     populateCategoryItems({"data":PRODUCTS}, load);
 });
 
 const CONTENT = document.getElementById("content");
-CONTENT.addEventListener("click",(evt) => {
+(CONTENT as HTMLButtonElement).addEventListener("click",(evt) => {
     console.log(evt.target.id);
     window.localStorage.setItem("curr_product",evt.target.id);
     location.href = "./product.html";
 });
 populateCategoryHeader();
-populateCategoryItems(getAllInCategory(window.localStorage.getItem("curr_category")),load);
+populateCategoryItems(getAllInCategory(window.localStorage.getItem("curr_category")!),load);

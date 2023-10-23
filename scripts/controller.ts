@@ -18,7 +18,11 @@ export interface product{
     product_specifications: string
 }
 
-export function getAllProducts(){
+export interface response {
+    found : boolean,
+    data: product[]
+}
+export function getAllProducts() : product[]{
     const ALLOWED_CATEGORIES = [
         "Clothing",
         "Home Furnishing",
@@ -39,7 +43,7 @@ export function getAllProducts(){
     return data['results'].filter(item => ALLOWED_CATEGORIES.includes(item.product_category_tree));
 }
 
-export function getSingleProduct(id: string){
+export function getSingleProduct(id: string) : response{
     var response = data['results'].filter(function(item){
         return item.uniq_id == id;
     });
@@ -52,7 +56,7 @@ export function getSingleProduct(id: string){
     }
 }
 
-export function getAllInCategory(category: string){
+export function getAllInCategory(category: string) : response{
     var response = data['results'].filter(function(item){
         return item.product_category_tree == category;
     });
@@ -65,7 +69,7 @@ export function getAllInCategory(category: string){
     }
 }
 
-export function getAllCategories(){
+export function getAllCategories() : string[]{
     const ALLOWED_CATEGORIES = [
         "Clothing",
         "Home Furnishing",
@@ -91,30 +95,30 @@ export function getAllCategories(){
     return ALLOWED_CATEGORIES;
 }
 
-export function getAllInList(ids : string[]){
+export function getAllInList(ids : string[]) : product[]{
     return getAllProducts().filter(item => ids.includes(item.uniq_id));
 }
 
 export function addToCart(id: string){
-    let cart  = JSON.parse(window.localStorage.getItem('cart'));
+    let cart  = JSON.parse(window.localStorage.getItem('cart')!);
     cart[id] = 1;
     window.localStorage.setItem('cart',JSON.stringify(cart));
 }
 
 export function removeFromCart(id: string){
-    let cart  = JSON.parse(window.localStorage.getItem('cart'));
+    let cart  = JSON.parse(window.localStorage.getItem('cart')!);
     delete cart[id];
     window.localStorage.setItem('cart',JSON.stringify(cart));
 }
 
 export function incrementInCart(id: string){
-    let cart  = JSON.parse(window.localStorage.getItem('cart'));
+    let cart  = JSON.parse(window.localStorage.getItem('cart')!);
     cart[id] += 1;
     window.localStorage.setItem('cart',JSON.stringify(cart));
 }
 
 export function decrementInCart(id: string){
-    let cart  = JSON.parse(window.localStorage.getItem('cart'));
+    let cart  = JSON.parse(window.localStorage.getItem('cart')!);
     cart[id] -= 1;
     if(cart[id] == 0){
         removeFromCart(id);
@@ -127,7 +131,7 @@ export function decrementInCart(id: string){
 //console.log(getAllCategories());
 
 export function addToWishlist(id: string){
-    let wishlist  = JSON.parse(window.localStorage.getItem('wishlist'));
+    let wishlist  = JSON.parse(window.localStorage.getItem('wishlist')!);
     if(!wishlist.includes(id)){
     wishlist.push(id);
     window.localStorage.setItem('wishlist',JSON.stringify(wishlist));
@@ -135,7 +139,7 @@ export function addToWishlist(id: string){
 }
 
 export function removeFromWishlist(id: string){
-    let wishlist  = JSON.parse(window.localStorage.getItem('wishlist'));
+    let wishlist  = JSON.parse(window.localStorage.getItem('wishlist')!);
     if(wishlist.includes(id)){
     wishlist.splice(wishlist.indexOf(id),1);
     window.localStorage.setItem('wishlist',JSON.stringify(wishlist));
@@ -143,7 +147,7 @@ export function removeFromWishlist(id: string){
 }
 
 export function addToSavedForLater(id: string){
-    let saved_for_later  = JSON.parse(window.localStorage.getItem('saved_for_later'));
+    let saved_for_later  = JSON.parse(window.localStorage.getItem('saved_for_later')!);
     if(!saved_for_later.includes(id)){
     saved_for_later.push(id);
     window.localStorage.setItem('saved_for_later',JSON.stringify(saved_for_later));
@@ -151,7 +155,7 @@ export function addToSavedForLater(id: string){
 }
 
 export function removeFromSavedForLater(id: string){
-    let saved_for_later  = JSON.parse(window.localStorage.getItem('saved_for_later'));
+    let saved_for_later  = JSON.parse(window.localStorage.getItem('saved_for_later')!);
     if(saved_for_later.includes(id)){
     saved_for_later.splice(saved_for_later.indexOf(id),1);
     window.localStorage.setItem('saved_for_later',JSON.stringify(saved_for_later));
@@ -179,8 +183,8 @@ export function filterByKeyword(data : Array<object>, keyword: string){
 }
 
 export function placeOrder(orderid : string){
-    let cart  = JSON.parse(window.localStorage.getItem('cart'));
-    let orders  = JSON.parse(window.localStorage.getItem('orders'));
+    let cart  = JSON.parse(window.localStorage.getItem('cart')!);
+    let orders  = JSON.parse(window.localStorage.getItem('orders')!);
     var order = {};
     order['id'] = orderid;
     order['cart'] = cart;
@@ -190,7 +194,7 @@ export function placeOrder(orderid : string){
 }
 
 export function removeOrder(orderid: string){
-    let orders  = JSON.parse(window.localStorage.getItem('orders'));
+    let orders  = JSON.parse(window.localStorage.getItem('orders')!);
     orders.splice(orders.indexOf(orders.filter(item => item.id == orderid )[0]));
     window.localStorage.setItem('orders',JSON.stringify(orders));
 }
@@ -210,18 +214,3 @@ export function init(){
     }
 }
 init();
-//addToCart("238d84971326ce6bcbf44b2663bd3062");
-//removeFromCart("238d84971326ce6bcbf44b2663bd3062");
-//incrementInCart("238d84971326ce6bcbf44b2663bd3062");
-//decrementInCart("238d84971326ce6bcbf44b2663bd3062");
-//addToWishlist("238d84971326ce6bcbf44b2663bd3062");
-//console.log(filterByKeyword(getAllInCategory("Clothing")['data'],'skirt'));
-//console.log(getAllInList(["238d84971326ce6bcbf44b2663bd3062","cb4fa87a874f715fff567f7b7b3be79c"]));
-//placeOrder("#123");
-// removeOrder("#123");
-// addToSavedForLater("#123");
-//removeFromSavedForLater('#123');
-//console.log(getAllProducts());
-
-// console.log(getSortedByPrice(getAllInCategory("Clothing")['data'],true));
-//console.log(filterByKeyword(getAllInCategory("Clothing")['data'],' red '));

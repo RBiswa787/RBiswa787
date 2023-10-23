@@ -1,6 +1,6 @@
 import { getAllCategories, getAllProducts, getSortedByRating, init } from "./controller.js";
 
-const categoryIcons = {
+const CATEGORY_ICONS  = {
     "Clothing" : "../assets/dress.png",
     "Home Furnishing": "../assets/bed.png",
     "Jewellery": "../assets/bracelet.png",
@@ -45,63 +45,63 @@ function populateCategoryHeader(){
         CATEGORY_HEADER?.appendChild(ANCHOR);
     });
 
-    const icon = document.createElement("i");
-    icon.className = "fa-solid fa-caret-down";
-    icon.style.color = "#707070";
-    CATEGORY_HEADER?.appendChild(icon);
+    const ICON = document.createElement("i");
+    ICON.className = "fa-solid fa-caret-down";
+    ICON.style.color = "#707070";
+    CATEGORY_HEADER?.appendChild(ICON);
 }
 
   function populateLandingCategories() {
     var categories = getAllCategories();
-    const landingCategoryCarousel = document.getElementById("bestseller-content");
+    const LANDING_CATEGORY_CAROUSEL = document.getElementById("bestseller-content");
     categories.forEach(category => {
-        const link = document.createElement("a");
-        link.href = "./category.html";
-        link.style.textDecoration = "none";
-        link.style.color = "black";
-        const card = document.createElement("div");
-        card.addEventListener("click",() => {
+        const LINK = document.createElement("a");
+        LINK.href = "./category.html";
+        LINK.style.textDecoration = "none";
+        LINK.style.color = "black";
+        const CARD = document.createElement("div");
+        CARD.addEventListener("click",() => {
             // console.log(category);
             window.localStorage.setItem("curr_category",category);
         });
-        card.className = "card card-block mx-2";
-        card.style.display = "flex";
-        card.style.height = "100%";
-        card.style.minWidth = "15rem";
-        card.style.paddingTop = "5%";
-        card.style.justifyContent = "space-between";
-        card.style.flexDirection = "column";
+        CARD.className = "card card-block mx-2";
+        CARD.style.display = "flex";
+        CARD.style.height = "100%";
+        CARD.style.minWidth = "15rem";
+        CARD.style.paddingTop = "5%";
+        CARD.style.justifyContent = "space-between";
+        CARD.style.flexDirection = "column";
         // card.innerText = category;
-        const img = document.createElement("img");
-        img.className = "card-img-top";
-        img.src = categoryIcons[category];
-        img.style.width = "5rem";
-        img.style.height = "5rem";
-        img.style.objectFit = "contain";
-        img.style.alignSelf = "center";
-        card.appendChild(img);
-        const cardBody = document.createElement("div");
-        cardBody.className = "card-body";
-        cardBody.style.flexDirection = "column";
-        cardBody.style.textAlign = "center";
-        const cardTitle = document.createElement("span");
-        cardTitle.className = "card-title"
-        cardTitle.style.fontFamily = "Inter";
-        cardTitle.style.fontWeight = "400";
-        card.style.color = "grey";
-        cardTitle.innerText = category;
-        cardBody.appendChild(cardTitle);
-        link.appendChild(card);
-        link.addEventListener("mouseover",()=>{
-            card.style.border = "1px solid #db4444";
-            cardTitle.style.color = "#db4444";
+        const IMG = document.createElement("img");
+        IMG.className = "card-img-top";
+        IMG.src = CATEGORY_ICONS[category];
+        IMG.style.width = "5rem";
+        IMG.style.height = "5rem";
+        IMG.style.objectFit = "contain";
+        IMG.style.alignSelf = "center";
+        CARD.appendChild(IMG);
+        const CARD_BODY = document.createElement("div");
+        CARD_BODY.className = "card-body";
+        CARD_BODY.style.flexDirection = "column";
+        CARD_BODY.style.textAlign = "center";
+        const CARD_TITLE = document.createElement("span");
+        CARD_TITLE.className = "card-title"
+        CARD_TITLE.style.fontFamily = "Inter";
+        CARD_TITLE.style.fontWeight = "400";
+        CARD.style.color = "grey";
+        CARD_TITLE.innerText = category;
+        CARD_BODY.appendChild(CARD_TITLE);
+        LINK.appendChild(CARD);
+        LINK.addEventListener("mouseover",()=>{
+            CARD.style.border = "1px solid #db4444";
+            CARD_TITLE.style.color = "#db4444";
         });
-        link.addEventListener("mouseleave",()=>{
-            card.style.border = "1px solid lightgrey";
-            cardTitle.style.color = "grey";
+        LINK.addEventListener("mouseleave",()=>{
+            CARD.style.border = "1px solid lightgrey";
+            CARD_TITLE.style.color = "grey";
         });
-        card.appendChild(cardBody);
-        landingCategoryCarousel.appendChild(link);
+        CARD.appendChild(CARD_BODY);
+        LANDING_CATEGORY_CAROUSEL?.appendChild(LINK);
      
     });
 

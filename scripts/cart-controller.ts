@@ -150,11 +150,11 @@ function populateCartitems() {
 
         WISH.addEventListener("click",() => {
             WISH.className = "fa-solid fa-heart";
-            let wishlist = JSON.parse(window.localStorage.getItem("wishlist"));
+            let wishlist = JSON.parse(window.localStorage.getItem("wishlist")!);
             wishlist.push(key);
             window.localStorage.setItem("wishlist",JSON.stringify(wishlist));
-            let cart = JSON.parse(window.localStorage.getItem("cart"));
-            let total = parseFloat(window.localStorage.getItem("total"));
+            let cart = JSON.parse(window.localStorage.getItem("cart")!);
+            let total = parseFloat(window.localStorage.getItem("total")!);
             let product = getSingleProduct(key);
             console.log(parseInt(cart[key]))
             console.log(product["data"][0]["discounted_price"]);
@@ -177,9 +177,9 @@ function populateCartitems() {
 
 
         ADD.addEventListener("click" , () => {
-            let cart = JSON.parse(window.localStorage.getItem("cart"));
+            let cart = JSON.parse(window.localStorage.getItem("cart")!);
             cart[key] += 1;
-            let total = parseFloat(window.localStorage.getItem("total"));
+            let total = parseFloat(window.localStorage.getItem("total")!);
             total += product["data"][0]["discounted_price"];
             window.localStorage.setItem("total",String(total));
             SPAN.innerText = "Rs." + window.localStorage.getItem("total");
@@ -187,13 +187,13 @@ function populateCartitems() {
             QTY_HOLDER.innerText = "x" + cart[key];
 
             const SPAN_TOTAL = document.getElementById("span-total");
-            SPAN_TOTAL.innerText = "Rs. " + String(parseFloat(window.localStorage.getItem("total"))+delivery_charges);
+            (SPAN_TOTAL as HTMLElement).innerText = "Rs. " + String(parseFloat(window.localStorage.getItem("total")!)+delivery_charges);
         });
 
         SUB.addEventListener("click" , () => {
-            let cart = JSON.parse(window.localStorage.getItem("cart"));
+            let cart = JSON.parse(window.localStorage.getItem("cart")!);
             cart[key] -= 1;
-            let total = parseFloat(window.localStorage.getItem("total"));
+            let total = parseFloat(window.localStorage.getItem("total")!);
             total -= product["data"][0]["discounted_price"];
             window.localStorage.setItem("total",String(total));
             SPAN.innerText = "Rs." + window.localStorage.getItem("total");
@@ -206,7 +206,7 @@ function populateCartitems() {
             window.localStorage.setItem("cart",JSON.stringify(cart));
             QTY_HOLDER.innerText = "x" + cart[key];
             const SPAN_TOTAL = document.getElementById("span-total");
-            SPAN_TOTAL.innerText = "Rs. " + String(parseFloat(window.localStorage.getItem("total"))+delivery_charges);
+            (SPAN_TOTAL as HTMLElement).innerText = "Rs. " + String(parseFloat(window.localStorage.getItem("total")!)+delivery_charges);
             }
         })
     });
@@ -250,7 +250,7 @@ function populateCartitems() {
 
     const SPAN_TOTAL = document.createElement("span");
     SPAN_TOTAL.id = "span-total";
-    SPAN_TOTAL.innerText = "Rs. " + String(parseFloat(window.localStorage.getItem("total"))+delivery_charges);
+    SPAN_TOTAL.innerText = "Rs. " + String(parseFloat(window.localStorage.getItem("total")!)+delivery_charges);
 
     ORDER_TOTAL.appendChild(SPAN_TOTAL);
 
@@ -266,13 +266,13 @@ function populateCartitems() {
     CART_ITEMS?.appendChild(ORDER_DELIVERY);
     CART_ITEMS?.appendChild(ORDER_TOTAL);
 
-    const pay = document.getElementById("pay");
+    const PAY = document.getElementById("pay");
 console.log("pay");
-     pay.addEventListener("click",async () => {
+     (PAY as HTMLButtonElement).addEventListener("click",async () => {
         console.log("attempt to pay");
         var options = {
             "key": "rzp_test_s9PLBTOlPiYmYw", 
-            "amount": (parseFloat(window.localStorage.getItem("total"))+delivery_charges)*100, 
+            "amount": (parseFloat(window.localStorage.getItem("total")!)+delivery_charges)*100, 
             "currency": "INR",
             "name": "Exclusive", 
             "description": "Test Transaction",

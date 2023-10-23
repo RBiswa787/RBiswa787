@@ -30,7 +30,7 @@ function populateCategoryHeader(){
 }
 
 function populateProductData(){
-    const UNIQ_ID = window.localStorage.getItem("curr_product");
+    const UNIQ_ID = window.localStorage.getItem("curr_product")!;
     const PRODUCT = getSingleProduct(UNIQ_ID);
     console.log(PRODUCT["data"]);
     const MAIN_IMG = document.getElementById("main-img");
@@ -44,46 +44,46 @@ function populateProductData(){
 }
    const TITLE = document.getElementById("product-title");
    console.log(TITLE);
-   TITLE?.innerText = PRODUCT["data"][0]["product_name"];
-   TITLE?.style.height = "auto";
-   TITLE?.style.marginBottom = "3%";
+   (TITLE as HTMLElement).innerText = PRODUCT["data"][0]["product_name"];
+   (TITLE as HTMLElement).style.height = "auto";
+   (TITLE as HTMLElement).style.marginBottom = "3%";
    const RATING = document.getElementById("product-rating");
         for(let i=1;i<=5;i++){
             if(i <= PRODUCT["data"][0].productRating){
                 const ICON = document.createElement("i");
                 ICON.className = "fa-solid fa-star";
                 ICON.style.color = "#FFD700";
-                RATING.appendChild(ICON);
+                (RATING as HTMLElement).appendChild(ICON);
             }
             else{
                 const ICON = document.createElement("i");
                 ICON.className = "fa-regular fa-star";
                 ICON.style.color = "#FFD700";
-                RATING.appendChild(ICON);
+                (RATING as HTMLElement).appendChild(ICON);
             }
         }
     
-    RATING?.style.marginBottom  ="2%";
-    RATING?.style.height = "auto";
+        (RATING as HTMLElement).style.marginBottom  ="2%";
+        (RATING as HTMLElement).style.height = "auto";
     
     const PRICE = document.getElementById("product-price");
-    PRICE.innerText = "Rs. "+PRODUCT["data"][0]["discounted_price"];
+    (PRICE as HTMLElement).innerText = "Rs. "+PRODUCT["data"][0]["discounted_price"];
 
     const DESC = document.getElementById("product-desc");
-    DESC.innerText = PRODUCT["data"][0]["description"];
-    DESC?.style.textAlign = "justify";
+    (DESC as HTMLElement).innerText = PRODUCT["data"][0]["description"];
+    (DESC as HTMLElement).style.textAlign = "justify";
 
     const COUNT_HOLDER = document.getElementById("countHolder");
-    COUNT_HOLDER?.innerText = JSON.parse(window.localStorage.getItem("cart"))[UNIQ_ID] || 0;
+    (COUNT_HOLDER as HTMLElement).innerText = JSON.parse(window.localStorage.getItem("cart")!)[UNIQ_ID] || 0;
 
     const ADD_BUTTON = document.getElementById("add");
     console.log(ADD_BUTTON);
-    ADD_BUTTON.addEventListener("click",() => {
-    let cart = JSON.parse(window.localStorage.getItem("cart"));
+    (ADD_BUTTON as HTMLElement).addEventListener("click",() => {
+    let cart = JSON.parse(window.localStorage.getItem("cart")!);
     if(!cart.hasOwnProperty(UNIQ_ID)){
         cart[UNIQ_ID] = 1;
-        WISH?.className = "fa-regular fa-heart";
-        let wishlist = JSON.parse(window.localStorage.getItem("wishlist"));
+        (WISH as HTMLElement).className = "fa-regular fa-heart";
+        let wishlist = JSON.parse(window.localStorage.getItem("wishlist")!);
         console.log(wishlist.includes(UNIQ_ID));
         if(wishlist.includes(UNIQ_ID)){
         wishlist.splice(wishlist.indexOf(UNIQ_ID),1);
@@ -93,22 +93,22 @@ function populateProductData(){
     else{
         cart[UNIQ_ID] += 1;
     }
-    let total = parseFloat(window.localStorage.getItem("total"));
+    let total = parseFloat(window.localStorage.getItem("total")!);
     total += PRODUCT["data"][0]["discounted_price"];
     window.localStorage.setItem("total",String(total));
     window.localStorage.setItem("cart",JSON.stringify(cart));
     const COUNT_HOLDER = document.getElementById("countHolder");
-    COUNT_HOLDER?.innerText = JSON.parse(window.localStorage.getItem("cart"))[UNIQ_ID];
+    (COUNT_HOLDER as HTMLElement).innerText = JSON.parse(window.localStorage.getItem("cart")!)[UNIQ_ID];
 });
 
     const SUB_BUTTON = document.getElementById("sub");
-    SUB_BUTTON.addEventListener("click",() => {
-    let cart = JSON.parse(window.localStorage.getItem("cart"));
+    (SUB_BUTTON as HTMLElement).addEventListener("click",() => {
+    let cart = JSON.parse(window.localStorage.getItem("cart")!);
     if(!cart.hasOwnProperty(UNIQ_ID)){
     }
     else{
         cart[UNIQ_ID] -= 1;
-        let total = parseFloat(window.localStorage.getItem("total"));
+        let total = parseFloat(window.localStorage.getItem("total")!);
         total -= PRODUCT["data"][0]["discounted_price"];
         window.localStorage.setItem("total",String(total));
         if(cart[UNIQ_ID] == 0){
@@ -117,35 +117,35 @@ function populateProductData(){
     }
     window.localStorage.setItem("cart",JSON.stringify(cart));
     const COUNT_HOLDER = document.getElementById("countHolder");
-    COUNT_HOLDER?.innerText = JSON.parse(window.localStorage.getItem("cart"))[UNIQ_ID] || 0;
+    (COUNT_HOLDER as HTMLElement).innerText = JSON.parse(window.localStorage.getItem("cart")!)[UNIQ_ID] || 0;
 });
 
 const WISH = document.getElementById("wish");
-if(JSON.parse(window.localStorage.getItem("wishlist")).includes(UNIQ_ID)){
-    WISH.className = "fa-solid fa-heart";
+if(JSON.parse(window.localStorage.getItem("wishlist")!).includes(UNIQ_ID)){
+    (WISH as HTMLElement).className = "fa-solid fa-heart";
 }
 else{
-    WISH.className = "fa-regular fa-heart";
+    (WISH as HTMlElement).className = "fa-regular fa-heart";
 }
 WISH?.addEventListener("click",() => {
     console.log("wish");
     if(WISH.className == "fa-regular fa-heart"){
     WISH.className = "fa-solid fa-heart";
-    let wishlist = JSON.parse(window.localStorage.getItem("wishlist"));
+    let wishlist = JSON.parse(window.localStorage.getItem("wishlist")!);
     wishlist.push(UNIQ_ID);
     window.localStorage.setItem("wishlist",JSON.stringify(wishlist));
 
-    let cart = JSON.parse(window.localStorage.getItem("cart"));
+    let cart = JSON.parse(window.localStorage.getItem("cart")!);
     delete cart[UNIQ_ID];
     window.localStorage.setItem("cart",JSON.stringify(cart));
     
     const COUNT_HOLDER = document.getElementById("countHolder");
-    COUNT_HOLDER?.innerText = JSON.parse(window.localStorage.getItem("cart"))[UNIQ_ID] || 0;
+    (COUNT_HOLDER as HTMLElement).innerText = JSON.parse(window.localStorage.getItem("cart")!)[UNIQ_ID] || 0;
     
     }
     else{
     WISH.className = "fa-regular fa-heart";
-    let wishlist = JSON.parse(window.localStorage.getItem("wishlist"));
+    let wishlist = JSON.parse(window.localStorage.getItem("wishlist")!);
     wishlist.splice(wishlist.indexOf(UNIQ_ID),1);
     window.localStorage.setItem("wishlist",JSON.stringify(wishlist));
 
